@@ -48,7 +48,7 @@ const Navbar = () => {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
         <Link to="/" style={{ color: 'var(--primary-color)', fontSize: '1.8rem', fontWeight: 'bold' }}>
-          TUBEFLIX (Demo)
+          TUBEFLIX
         </Link>
         <div className="nav-links" style={{ display: 'none', gap: '1.5rem', '@media (min-width: 768px)': { display: 'flex' } }}>
           <Link to="/">Home</Link>
@@ -63,15 +63,15 @@ const Navbar = () => {
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
         <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)', padding: '0.3rem 0.6rem', borderRadius: '4px', border: '1px solid #333' }}>
           <Search size={18} style={{ color: '#aaa', marginRight: '0.5rem' }} />
-          <input 
-            type="text" 
-            placeholder="Search movies..." 
+          <input
+            type="text"
+            placeholder="Search movies..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{ background: 'transparent', border: 'none', color: 'white', outline: 'none', width: '150px' }}
           />
         </form>
-        
+
         {isAuthenticated ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
