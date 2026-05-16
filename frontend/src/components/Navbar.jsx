@@ -48,7 +48,7 @@ const Navbar = () => {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
         <Link to="/" style={{ color: 'var(--primary-color)', fontSize: '1.8rem', fontWeight: 'bold' }}>
-          TUBEFLIX
+          TUBEFLIX (Demo)
         </Link>
         <div className="nav-links" style={{ display: 'none', gap: '1.5rem', '@media (min-width: 768px)': { display: 'flex' } }}>
           <Link to="/">Home</Link>
