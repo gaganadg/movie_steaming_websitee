@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/movie-streaming
+      - JWT_SECRET=supersecretjwtkey123
+    depends_on:
+      - mongo
+    networks:
+      - movie-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - movie-network
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - movie-network
+
+volumes:
+  mongo-data:
+
+networks:
+  movie-network:
+    driver: bridge
