@@ -56,7 +56,7 @@ const Admin = () => {
       try {
         await API.delete(`/movies/${id}`);
         fetchMovies();
-      } catch (error) {
+      } catch {
         alert('Error deleting movie');
       }
     }

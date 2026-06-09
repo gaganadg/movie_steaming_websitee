@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, LogOut, User, Menu, X } from 'lucide-react';
+import { Search, LogOut, User } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import useMovieStore from '../store/movieStore';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const { isAuthenticated, user, logout } = useAuthStore();
   const { fetchMovies } = useMovieStore();
