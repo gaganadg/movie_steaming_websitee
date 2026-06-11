@@ -10,7 +10,10 @@ const Admin = () => {
     rating: 1,
     description: '',
     thumbnail: '',
-    trailerUrl: ''
+    trailerUrl: '',
+    language: 'English',
+    releaseDate: new Date().toISOString().split('T')[0],
+    contentType: 'Movie'
   });
 
   const fetchMovies = async () => {
@@ -42,7 +45,10 @@ const Admin = () => {
         rating: 1,
         description: '',
         thumbnail: '',
-        trailerUrl: ''
+        trailerUrl: '',
+        language: 'English',
+        releaseDate: new Date().toISOString().split('T')[0],
+        contentType: 'Movie'
       });
       fetchMovies();
       alert('Movie added successfully!');
@@ -72,11 +78,26 @@ const Admin = () => {
           <h3>Add New Movie</h3>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
             <input name="title" value={formData.title} onChange={handleChange} placeholder="Title" className="input-field" required />
-            <select name="genre" value={formData.genre} onChange={handleChange} className="input-field" required>
-              {['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Romance', 'Thriller', 'Documentary', 'Fantasy'].map(g => (
-                <option key={g} value={g}>{g}</option>
-              ))}
-            </select>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <select name="genre" value={formData.genre} onChange={handleChange} className="input-field" required>
+                {['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Romance', 'Thriller', 'Documentary', 'Fantasy'].map(g => (
+                  <option key={g} value={g}>{g}</option>
+                ))}
+              </select>
+              <select name="contentType" value={formData.contentType} onChange={handleChange} className="input-field" required>
+                {['Movie', 'Series', 'Sports'].map(type => (
+                  <option key={type} value={type}>{type}</option>
+                ))}
+              </select>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <select name="language" value={formData.language} onChange={handleChange} className="input-field" required>
+                {['English', 'Hindi', 'Telugu'].map(lang => (
+                  <option key={lang} value={lang}>{lang}</option>
+                ))}
+              </select>
+              <input type="date" name="releaseDate" value={formData.releaseDate} onChange={handleChange} className="input-field" required />
+            </div>
             <input type="number" name="rating" value={formData.rating} onChange={handleChange} placeholder="Rating (1-10)" min="1" max="10" className="input-field" required />
             <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" className="input-field" rows="4" required />
             <input name="thumbnail" value={formData.thumbnail} onChange={handleChange} placeholder="Thumbnail URL" className="input-field" required />
@@ -96,7 +117,9 @@ const Admin = () => {
                     <img src={movie.thumbnail} alt={movie.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                     <div>
                       <div style={{ fontWeight: 'bold' }}>{movie.title}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#aaa' }}>{movie.genre} | {movie.rating}/10</div>
+                      <div style={{ fontSize: '0.8rem', color: '#aaa' }}>
+                        {movie.contentType} | {movie.genre} | {movie.language} | {movie.releaseDate ? new Date(movie.releaseDate).getFullYear() : 'N/A'} | {movie.rating}/10
+                      </div>
                     </div>
                   </div>
                   <button className="btn-primary" style={{ background: '#e50914', padding: '0.5rem' }} onClick={() => handleDelete(movie._id)}>Delete</button>

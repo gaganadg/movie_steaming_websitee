@@ -69,6 +69,17 @@ const MovieSchema = new mongoose.Schema({
       'Please use a valid URL with HTTP or HTTPS'
     ]
   },
+  language: {
+    type: String,
+    required: [true, 'Please add a language'],
+    enum: ['English', 'Hindi', 'Telugu'],
+    default: 'English'
+  },
+  releaseDate: {
+    type: Date,
+    required: [true, 'Please add a release date'],
+    default: Date.now
+  },
   createdAt: {
     type: Date,
     default: Date.now

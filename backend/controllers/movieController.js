@@ -26,6 +26,14 @@ exports.getMovies = async (req, res, next) => {
 
     query = Movie.find(parsedQuery);
 
+    // Sort
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort('-createdAt');
+    }
+
     const movies = await query;
 
     res.status(200).json({
