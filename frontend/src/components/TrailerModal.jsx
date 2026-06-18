@@ -4,13 +4,13 @@ import useMovieStore from '../store/movieStore';
 import useAuthStore from '../store/authStore';
 
 const TrailerModal = ({ isOpen, onClose, movie }) => {
-  if (!isOpen || !movie) return null;
-  const trailerUrl = movie.trailerUrl;
-  
   const [hoveredStar, setHoveredStar] = useState(0);
   const { rateMovie } = useMovieStore();
   const { isAuthenticated } = useAuthStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (!isOpen || !movie) return null;
+  const trailerUrl = movie.trailerUrl;
 
   const handleRate = async (score) => {
     if (!isAuthenticated) return alert("Please log in to rate.");
@@ -28,7 +28,7 @@ const TrailerModal = ({ isOpen, onClose, movie }) => {
       if (url.includes('embed')) return url;
       const videoId = url.split('v=')[1].split('&')[0];
       return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    } catch (e) {
+    } catch {
       return url;
     }
   };

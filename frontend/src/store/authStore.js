@@ -69,7 +69,7 @@ const useAuthStore = create((set) => ({
         isAuthenticated: true, 
         loading: false 
       });
-    } catch (error) {
+    } catch {
       localStorage.removeItem('token');
       set({ 
         user: null, 
